@@ -1,14 +1,13 @@
-import { html } from 'lit'
+import { LitElement, html } from 'lit'
 import { customElement, property } from 'lit/decorators.js'
-import { TailwindElement } from "../shared/tailwind.element";
-
+import { TailwindElement } from "../tailwind/tailwind.element";
 import style from "./my.element.scss?inline";
+import './button.element';
 
 @customElement('my-element')
-export class MyElement extends TailwindElement(style) {
+export class MyElement extends TailwindElement(LitElement, style) {
 
   @property({ type: Number }) count = 0
-
   @property() accessor myProperty = "initial value"
 
   render() {
@@ -19,9 +18,7 @@ export class MyElement extends TailwindElement(style) {
         </div>
         <slot></slot>
         <div class="p-1">
-          <button @click=${this._onClick} part="button" class="rounded-md border-2 px-4 py-2">
-            count is ${this.count}
-          </button>
+          <button-element .count=${this.count} @click=${this._onClick}></button-element>
         </div>
       </div> 
     `
