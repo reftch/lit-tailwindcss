@@ -1,8 +1,5 @@
 import { AnyAction } from "redux"
-
-export type CounterState = {
-  counter: number
-}
+import { CounterState } from "../store"
 
 export const initialState: CounterState = {
   counter: 0

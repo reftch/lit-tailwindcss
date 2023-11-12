@@ -1,16 +1,15 @@
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { TailwindElement } from "../tailwind/tailwind.element"
+import { BaseElement } from "../core/base.element"
 import style from "./my.element.scss?inline"
 import { store } from '../store/store'
 import './button.element'
-import { CounterState } from '../store/reducers'
 
 @customElement('my-element')
-export class MyElement extends TailwindElement(LitElement, style) {
+export class MyElement extends BaseElement(LitElement, style) {
 
   get count() {
-    return (store.getState().counter as CounterState).counter
+    return store.getState().counter['counter']
   } 
 
   stateChanged = () => this.requestUpdate()
