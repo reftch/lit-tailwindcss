@@ -1,6 +1,6 @@
 import { LitElement, unsafeCSS } from "lit"
-import style from "./tailwind.global.css?inline"
 import { store } from "../store/store"
+import style from "./tailwind.global.css?inline"
 
 const tailwindElement = unsafeCSS(style)
 
@@ -20,14 +20,14 @@ export const TailwindElement = <T extends Constructor<LitElement>>(superClass: T
       store.subscribe(this.stateChanged)
     }
   
-    renderSelector(selector: string, value: string) {
+    renderSelector(selector: string, value: string): void {
       const el = this.shadowRoot?.querySelector(selector)
       if (el) {
         el.innerHTML = value
       }
     }
 
-    protected stateChanged = () => {}
+    protected stateChanged = (): void => {}
   }
   // Cast return type to the superClass type passed in
   return TailwindCSSClass as Constructor<TailwindCSSClass> & T;

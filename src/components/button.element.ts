@@ -7,10 +7,11 @@ import { CounterState } from '../store/reducers'
 @customElement('button-element')
 export class ButtonElement extends TailwindElement(LitElement) {
 
-  stateChanged = () => {
-    const count = (store.getState().counter as CounterState).counter
-    this.renderSelector('div#title-btn', `count is ${count}`)
-  }
+  get count() {
+    return (store.getState().counter as CounterState).counter
+  } 
+
+  stateChanged = () => this.renderSelector('div#title-btn', `count is ${this.count}`)
 
   render() {
     return html`
