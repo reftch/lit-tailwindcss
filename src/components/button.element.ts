@@ -1,21 +1,20 @@
 import { LitElement, html } from 'lit'
-import { customElement } from 'lit/decorators.js'
+import { customElement, state } from 'lit/decorators.js'
 import { TailwindElement } from "../tailwind/tailwind.element"
 import { store } from '../store/store'
-import { CounterState } from '../store/reducers';
+import { CounterState } from '../store/reducers'
 
 @customElement('button-element')
 export class ButtonElement extends TailwindElement(LitElement) {
 
+  @state()
+  private count = 0
+
   connectedCallback(): void {
     super.connectedCallback();
     store.subscribe(() => {
-      this.requestUpdate()
-    })  
-  }
-
-  get count() {
-    return (store.getState().counter as CounterState).counter
+      this.count = (store.getState().counter as CounterState).counter
+    })
   }
 
   render() {
@@ -24,11 +23,5 @@ export class ButtonElement extends TailwindElement(LitElement) {
         count is ${this.count}
       </button>
     `
-  }
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'button-element': ButtonElement
   }
 }

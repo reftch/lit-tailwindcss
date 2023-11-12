@@ -1,9 +1,9 @@
 import { LitElement, html } from 'lit'
 import { customElement } from 'lit/decorators.js'
-import { TailwindElement } from "../tailwind/tailwind.element";
-import style from "./my.element.scss?inline";
-import './button.element';
-import { store } from '../store/store';
+import { TailwindElement } from "../tailwind/tailwind.element"
+import style from "./my.element.scss?inline"
+import { store } from '../store/store'
+import './button.element'
 
 @customElement('my-element')
 export class MyElement extends TailwindElement(LitElement, style) {
@@ -20,10 +20,4 @@ export class MyElement extends TailwindElement(LitElement, style) {
   }
 
   private onClick = () => store.dispatch({ type: 'INCREMENT' })
-}
-
-declare global {
-  interface HTMLElementTagNameMap {
-    'my-element': MyElement
-  }
 }
