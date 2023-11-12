@@ -13,10 +13,7 @@ export class MyElement extends TailwindElement(LitElement, style) {
     return (store.getState().counter as CounterState).counter
   } 
 
-  stateChanged = () => {
-    this.renderSelector('div#count', `count is ${this.count}`)
-    this.setAtrribute('button-element#dec-btn', 'disabled', this.count <= 0)
-  }
+  stateChanged = () => this.requestUpdate()
 
   render() {
     return html`
@@ -32,7 +29,7 @@ export class MyElement extends TailwindElement(LitElement, style) {
           <button-element 
             id="dec-btn"
             label="-"
-            disabled 
+            ?disabled=${this.count <= 0} 
             @click=${() => store.dispatch({ type: 'DECREMENT' })}
           ></button-element>
         </div>

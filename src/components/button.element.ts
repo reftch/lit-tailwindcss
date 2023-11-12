@@ -13,6 +13,7 @@ export class ButtonElement extends TailwindElement(LitElement) {
   render() {
     return html`
       <button
+        data-testid=${this.id}
         part="button" 
         ?disabled=${this.disabled}
         class="rounded-md border m-2 px-4 py-2 cursor-pointer disabled:text-slate-500"

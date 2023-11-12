@@ -5,8 +5,6 @@ import style from "./tailwind.global.css?inline"
 const tailwindElement = unsafeCSS(style)
 
 export declare class TailwindCSSClass {
-  protected renderSelector(selector: string, value: string): unknown
-  protected setAtrribute(selector: string, name: string, value?: string): unknown
   protected stateChanged(): unknown
 }
 
@@ -21,24 +19,6 @@ export const TailwindElement = <T extends Constructor<LitElement>>(superClass: T
       store.subscribe(this.stateChanged)
     }
   
-    renderSelector(selector: string, value: string): void {
-      const el = this.shadowRoot?.querySelector(selector)
-      if (el) {
-        el.innerHTML = value
-      }
-    }
-
-    setAtrribute(selector: string, name: string, value: string | boolean): void {
-      const el = this.shadowRoot?.querySelector(selector)
-      if (el) {
-        if (value) {
-          el.setAttribute(name, typeof value === 'string' ? value : '')
-        } else {
-          el.removeAttribute(name)
-        }
-      }
-    }
-
     protected stateChanged = (): void => {}
   }
 
